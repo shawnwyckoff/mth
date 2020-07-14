@@ -1,0 +1,19 @@
+[package]
+name = "mth"
+version = "0.0.0"
+authors = ["shawnwyckoff"]
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/shawnwyckoff/mth"
+documentation = "https://github.com/shawnwyckoff/mth"
+homepage = "https://github.com/shawnwyckoff/mth"
+description = """
+Rust mathematics and algorithms library.
+"""
+keywords = ["math", "mathematics", "stat", "statistics", "algorithm", "algorithms"]
+include = ["src/", "LICENSE", "README.md"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
