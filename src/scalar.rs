@@ -1,0 +1,1 @@
+pub struct elegant_f64 f64

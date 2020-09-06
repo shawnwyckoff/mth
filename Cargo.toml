@@ -21,6 +21,8 @@ rustdoc-args = [ "--html-in-header", "katex-header.html" ]
 
 [dependencies]
 num = "0.2"
+num-traits = "0.2"
 rust_decimal = "1.6.0"
 time = "0.2.16"
 anyhow = "1.0"
+rand = "0.7.3"

@@ -1,8 +1,3 @@
-pub struct matrix {
-    v: Vec<Vec<f64>>, // values matrix
-    n: [String], // name index
-}
-
 /**
 
 $$
@@ -16,9 +11,13 @@ $$
 */
 pub fn price_distance(val_from: &[f64], val_to: &[f64]) -> Result<f64, anyhow::Error> {
     if val_from.len() != val_to.len() {
-        return Err(anyhow::anyhow!("from length {} != to length {}", val_from.len(), val_to.len()));
+        return Err(anyhow::anyhow!(
+            "from length {} != to length {}",
+            val_from.len(),
+            val_to.len()
+        ));
     }
-    let zero_usize : usize = 0;
+    let zero_usize: usize = 0;
     if val_from.len().eq(&zero_usize) {
         return Err(anyhow::anyhow!("empty data length"));
     }
@@ -28,7 +27,7 @@ pub fn price_distance(val_from: &[f64], val_to: &[f64]) -> Result<f64, anyhow::E
     for i in 0..val_from.len() {
         res += ((val_from[i].ln() - pi0_from) - (val_to[i].ln() - pi0_to)).powi(2)
     }
-    return Ok(res)
+    return Ok(res);
 }
 
 #[cfg(test)]

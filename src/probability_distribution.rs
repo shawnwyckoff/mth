@@ -6,7 +6,8 @@ f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
 $$
 */
 pub fn normal_distribution(x: f64, mu: f64, sigma: f64) -> f64 {
-    (std::f64::consts::E.powf(-((x - mu).powi(2) / (2.0*sigma*sigma)))) / ((std::f64::consts::PI * 2.0).sqrt()*sigma)
+    (std::f64::consts::E.powf(-((x - mu).powi(2) / (2.0 * sigma * sigma))))
+        / ((std::f64::consts::PI * 2.0).sqrt() * sigma)
 }
 
 pub fn standard_normal_distribution(x: f64) -> f64 {

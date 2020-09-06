@@ -1,7 +1,7 @@
 use core::fmt;
 
-const HEX_TABLE_LOWER:&[u8] = b"0123456789abcdef";
-const HEX_TABLE_UPPER:&[u8] = b"0123456789ABCDEF";
+const HEX_TABLE_LOWER: &[u8] = b"0123456789abcdef";
+const HEX_TABLE_UPPER: &[u8] = b"0123456789ABCDEF";
 
 /// Hex codec error type.
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -20,7 +20,7 @@ pub enum HexErr {
 pub trait HexEnc {
     /// Encode hex number to hex string
     /// Example: encode hex u8 slice [0x18, 0x19] to str "1819" which equals to u8 slice [0x31, 0x38, 0x31, 0x39]
-    fn u_hex_encode(&self, upper:bool) -> String;
+    fn u_hex_encode(&self, upper: bool) -> String;
 }
 
 /// Hex decoder trait
@@ -29,8 +29,6 @@ pub trait HexDec {
     /// Example: decode str "1819" to u8 slice [0x18, 0x19]
     fn u_hex_decode(&self) -> Result<Vec<u8>, HexErr>;
 }
-
-
 
 impl std::error::Error for HexErr {}
 
@@ -46,11 +44,10 @@ impl fmt::Display for HexErr {
     }
 }
 
-
 impl HexEnc for &[u8] {
-    fn u_hex_encode(&self, upper:bool) -> String {
+    fn u_hex_encode(&self, upper: bool) -> String {
         let mut dst = vec![0; self.len() * 2];
-        _hex_encode( self.as_ref(), &mut dst, upper);
+        _hex_encode(self.as_ref(), &mut dst, upper);
         return String::from_utf8(dst).unwrap();
     }
 }
@@ -58,12 +55,10 @@ impl HexEnc for &[u8] {
 impl HexDec for str {
     fn u_hex_decode(&self) -> Result<Vec<u8>, HexErr> {
         let mut dst = vec![0; self.len() / 2];
-        _hex_decode( self.as_ref(), &mut dst)?;
+        _hex_decode(self.as_ref(), &mut dst)?;
         return Ok(dst.to_vec());
     }
 }
-
-
 
 #[inline]
 pub fn _hex_encode(src: &[u8], dst: &mut [u8], upper: bool) {
@@ -102,7 +97,8 @@ pub fn _hex_decode(src: &[u8], dst: &mut [u8]) -> Result<(), HexErr> {
     }
 
     for i in 0..dst.len() {
-        dst[i] = _hex_char_to_u8(src[2 * i], 2 * i)? << 4 | _hex_char_to_u8(src[2 * i + 1], 2 * i + 1)?;
+        dst[i] =
+            _hex_char_to_u8(src[2 * i], 2 * i)? << 4 | _hex_char_to_u8(src[2 * i + 1], 2 * i + 1)?;
     }
 
     Ok(())
